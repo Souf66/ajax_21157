@@ -102,4 +102,67 @@ $(document).ready(function () {
 			}
 		}
 	})
+
+	$('#btn').click(function(){
+		chercher();
+	})
+
+	//AUTRE API
+	$('#chercher').click(function(){
+
+		var saisi = $('#saisi').val();
+					console.log(saisi)
+	
+			$.ajax({
+	
+				//url:"https://www.hatvp.fr/agora/opendata/agora_repertoire_opendata.json",
+				//url:"https://entreprise.data.gouv.fr/api/sirene/v1/full_text/iknsa",
+				url:"https://entreprise.data.gouv.fr/api/sirene/v1/full_text/"+saisi,
+				dataType: "json",
+				success:function (data) {
+	
+					$('.content, .carte').empty()
+	
+					$('.content').append('<h2> siren:' +data.etablissement[0].siren +'</h2>')
+					$('.content').append('<h2> siret:' +data.etablissement[0].siret +'</h2>')
+					$('.content').append('<h2> libelle_activite_principale:' +data.etablissement[0].libelle_activite_principale +'</h2>')
+					$('.content').append('<h2> nom_raison_sociale:' +data.etablissement[0].nom_raison_sociale +'</h2>')
+					$('.content').append('<h2> geo_adresse:' +data.etablissement[0].geo_adresse +'</h2>')
+	
+					var lal = data.etablissement[0].latitude
+					var lon = data.etablissement[0].longitude
+	
+					$('.carte').append('<iframe src="https://maps.google.com/maps?q='+lal+','+lon+'&hl=en&z=14&amp;output=embed" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>')
+				},
+				error: function (status) {
+					console.log(status);
+				}
+			})
+	
+		})
 })
+
+
+function chercher(){
+	var ville = $('#ville').val();
+
+	$.ajax({
+		url:"http://api.openweathermap.org/data/2.5/weather?q="+ville+"&appid=77d38e0edc7edd19764dd85522053606",
+		dataType:'json',
+		success:function (data) {
+			console.log(data);
+			$('.city_name').empty();
+			$('.city_name').append(data.name);
+			$('.city_temp').text("Il fait "+(data.main.temp - 273).toFixed(1) +"degrés");
+
+			icon_url = "http://openweathermap.org/img/w/" + data["weather"][0].icon +".png"
+
+			$('.city_icon').html("<img src='"+icon_url+"' alt=icon>")
+
+
+		},
+		error:function (xhr) {
+			console.log(xhr.status);
+		}
+	})
+}
