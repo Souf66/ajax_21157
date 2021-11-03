@@ -1,0 +1,24 @@
+{
+	"stagiaire":[
+		{
+			"nom":"Camara",
+			"prenom":"Moussa",
+			"email":"test@test.fr"
+		},
+		{
+			"nom":"Test",
+			"prenom":"Moussa",
+			"email":"test@test.fr"
+		},
+		{
+			"nom":"Afpa",
+			"prenom":"Moussa",
+			"email":"test@test.fr"
+		},
+		{
+			"nom":"aaaaaa",
+			"prenom":"Moussa",
+			"email":"test@test.fr"
+		}
+	]
+}

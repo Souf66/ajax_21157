@@ -8,7 +8,7 @@ $(document).ready(function () {
 			url:$(this).attr("href"), // URL de destination 
 			dataType :"text",// type de données attendues
 			cache:false, // Pour éviter la sauvegarde dans le memoire cache du navigateur
-			
+
 			// En cas de succés de requete AJAX, le resultat de la requete est stocké 
 			//directement dans la variable de reception 'data' de la fonction anonyme
 			// data contient la réposne de la requete AJAX 
@@ -25,4 +25,37 @@ $(document).ready(function () {
 		})
         return false;
     })
+
+	//************ JSON ******** */
+	$.ajax({
+		url:"js/stagiaire.json",
+		dataType:"json",
+		success:function(data){
+
+			var style = "<ul>";
+			for (var i = 0; i < data.stagiaire.length; i++) {
+				var nom_stagiaire = data.stagiaire[i].nom;
+				var prenom_stagiaire = data.stagiaire[i].prenom;
+				
+				style += "<li>";
+				style += nom_stagiaire+"  ";
+				style += prenom_stagiaire +" ";
+				style += data.stagiaire[i].email;
+
+				style += "</li> ";
+			}
+			style += "</ul>";
+			
+			$('p').empty();
+			if($('p ul ').length >= 1){
+				
+				$('p ul').empty();
+			}
+			$('p').append(style);
+		},
+		error:function(xhr) {
+			console.log(xhr)
+		}
+	})
+	//--------------------------------------------------------------
 })
