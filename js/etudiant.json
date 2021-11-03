@@ -1,0 +1,34 @@
+{
+	"etudiants":[
+		{
+			"prenom":"Moussa",
+			"nom":"Camara",
+			"moyenne":12
+		},
+		{
+			"prenom":"Vanessa",
+			"nom":"test",
+			"moyenne":1
+		},
+		{
+			"prenom":"Manu",
+			"nom":"Macron",
+			"moyenne":0
+		},
+		{
+			"prenom":"Afpa",
+			"nom":"Paris",
+			"moyenne":18
+		},
+		{
+			"prenom":"Test-paris",
+			"nom":"CDA",
+			"moyenne":12
+		},
+		{
+			"prenom":"Jean",
+			"nom":"Bidule",
+			"moyenne":10
+		}
+	]
+}

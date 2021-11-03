@@ -58,4 +58,48 @@ $(document).ready(function () {
 		}
 	})
 	//--------------------------------------------------------------
+
+	$.ajax({
+		url:"js/etudiant.json",
+		dataType:"json",
+		success:function (data) {
+			$('.liste-etudiants-admis').empty();
+			$('.liste-etudiants-non-admis').empty();
+			for (var i = 0; i < data.etudiants.length; i++) {
+				
+				if (data.etudiants[i].moyenne >= 10) {
+					var admis = "<ul class='list-group'>";
+					admis +=" <li class='list-group-item d-flex justify-content-between align-items-center'>";
+					admis += data.etudiants[i].prenom + " " +data.etudiants[i].nom;
+					admis += "<span class='badge bg-primary rounded-pill'>";
+					admis += data.etudiants[i].moyenne;
+					admis += "</span> </li></ul>";
+
+
+					
+					$('.liste-etudiants-admis').append(admis);
+				}
+				else{
+					var admis = "<ul class='list-group'>";
+					admis +=" <li class='list-group-item d-flex justify-content-between align-items-center'>";
+					admis += data.etudiants[i].prenom + " " +data.etudiants[i].nom;
+					admis += "<span class='badge bg-primary rounded-pill'>";
+					admis += data.etudiants[i].moyenne;
+					admis += "</span> </li></ul>";
+
+
+					$('.liste-etudiants-non-admis').append(admis);
+
+				}
+			}
+		},
+		error:function (xhr) {
+			console.log(xhr.status)
+
+			if(xhr.status == 404 ){
+				$('.liste-etudiants-admis, .liste-etudiants-non-admis').hide();
+				$('.liste').html('<img src="https://fab404.com/wp-content/uploads/2009/06/simpsoncrazy404.jpg">');
+			}
+		}
+	})
 })
