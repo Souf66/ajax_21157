@@ -31,8 +31,11 @@ $(document).ready(function () {
 		url:"js/stagiaire.json",
 		dataType:"json",
 		success:function(data){
-
 			var style = "<ul>";
+			// VERSION SALAH
+			// for (let index of data.stagiaire) {
+			// 	console.log(index);	
+			// }
 			for (var i = 0; i < data.stagiaire.length; i++) {
 				var nom_stagiaire = data.stagiaire[i].nom;
 				var prenom_stagiaire = data.stagiaire[i].prenom;
